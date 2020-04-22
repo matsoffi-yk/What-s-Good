@@ -1,22 +1,57 @@
-import React, { useState } from 'react';
-import Facebook from './component/Facebook';
+import React, { Component } from 'react';
+import firebase from "firebase"
+import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth"
 import './Auth.css';
 
-const Auth = () => {
+firebase.initializeApp({
+    apiKey: "AIzaSyBAgOXrIlsNHrQ3FCy9CEmi9hwna7tqEmM",
+    authDomain: "what-is-good-140613.firebaseapp.com"
+})
 
-    const [name,setName] = useState('');
-    const response = () => {
-        setName()
+class Auth extends Component {
+
+    state = { isSignedIn: false }
+    uiConfig = {
+        signInFlow: "popup",
+        signInOptions: [
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+            firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+        callbacks: {
+            signInSuccess: () => false
+        }
     }
-    console.log(response.name)
-    return(
-        <div className="auth">
-            <Facebook response={response} />
-            <h1>111 {name}</h1>
-        </div>
-        
-    )
-    console.log(response.name)
+
+    componentDidMount = () => {
+        firebase.auth().onAuthStateChanged(user => {
+            this.setState({ isSignedIn: !!user })
+            console.log("user", user)
+        })
+    }
+
+    render() {
+        return (
+            <div className="auth">
+                {this.state.isSignedIn ? (
+                    <span>
+                        <div>Signed In!</div>
+                        <button onClick={() => firebase.auth().signOut()}>Sign out!</button>
+                        <h1>Welcome {firebase.auth().currentUser.displayName}</h1>
+                        <img
+                            alt="profile picture"
+                            src={firebase.auth().currentUser.photoURL}
+                        />
+                    </span>
+                ) : (
+                        <StyledFirebaseAuth
+                            uiConfig={this.uiConfig}
+                            firebaseAuth={firebase.auth()}
+                        />
+                    )}
+            </div>
+        )
+    }
 }
 
 export default Auth;
