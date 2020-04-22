@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Topbar from './component/Topbar.js';
 
-function App() {
+const App = () => {
   return(
     <div>
       <Topbar/>

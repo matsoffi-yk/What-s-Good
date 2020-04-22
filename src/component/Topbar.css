@@ -29,7 +29,7 @@ input[type=text]{
     padding: 0 0 0 10px;
   }
   
-button[type=button] {
+button[type=search] {
     border: 1px solid rgb(255, 166, 0);
     padding: 0 0 10px;
     width: 50px;

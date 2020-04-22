@@ -1,0 +1,10 @@
+button[type=button] {
+    width: 25%;
+    height: 10%;
+}
+
+.auth {
+    text-align: center;
+    padding: 50px;
+    
+}
