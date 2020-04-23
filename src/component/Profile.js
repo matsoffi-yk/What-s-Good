@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import TaskProfile from './component/TaskProfile'
+import TaskProfile from './TaskProfile'
 
 const Admin = () => {
     return (
-        <div>
-
+        <div className="form">
+            Profile
         </div>
 
     );

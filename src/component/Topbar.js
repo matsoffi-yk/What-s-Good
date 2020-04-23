@@ -1,9 +1,9 @@
-import React from 'react'
-import "./Topbar.css"
+import React from 'react';
+import "./css/Topbar.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Profile from '../Profile';
-import Auth from '../Auth';
-import Store from '../Store';
+import Profile from './Profile';
+import Auth from './Auth';
+import Store from './Store';
 
 const Topbar = () => {
 

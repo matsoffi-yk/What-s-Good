@@ -1,5 +1,5 @@
 import React from 'react'
-import './TaskProfile.css'
+import './css/TaskProfile.css'
 const TaskAdmin = props => {
 
     return (
