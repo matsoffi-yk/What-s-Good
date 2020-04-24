@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import TaskProfile from './TaskProfile'
+import React from 'react';
 
 const Admin = () => {
     return (
