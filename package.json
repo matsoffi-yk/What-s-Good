@@ -16,8 +16,10 @@
     "react-dom": "^16.13.0",
     "react-facebook-login": "^4.1.1",
     "react-firebaseui": "^4.1.0",
+    "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "redux": "^4.0.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -41,7 +43,8 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-react": "^7.9.1"
+    "@babel/preset-react": "^7.9.1",
+    "redux-devtools": "^3.5.0"
   },
   "resolutions": {
     "@babel/preset-env": "7.5.5"
