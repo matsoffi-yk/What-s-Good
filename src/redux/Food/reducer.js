@@ -20,7 +20,7 @@ export const formReducer = (data = initialState, action) => {
 
 export const FoodReducer = (foods = [], action) => {
     switch (action.type) {
-        case 'ADD_FOOD':
+        case 'GET_FOOD':
             return [
                 ...foods,
                 action.payload
