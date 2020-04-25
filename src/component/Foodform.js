@@ -8,10 +8,19 @@ const Foodform = props => {
     const foods = useSelector(state => state.foods)
     const [cooka, setcook] = useState('')
     const { name, imgUrl, detail, recipes, cook } = props.foods;
-    const test = () => {
+
+    const cooks = () => {
         setcook(cook)
     }
 
+    const recipe = () => {
+        return (
+            <div>
+                <p>{cooka}</p>
+                <a onClick={() => setcook('')}>close</a>
+            </div>
+        )
+    }
     const foodform = () => {
         return (
             <div className="form">
@@ -20,8 +29,8 @@ const Foodform = props => {
                     <div className="media-body">
                         <h5 className="mt-0">{name}</h5>
                         <p>{detail}</p>
-                        <button className="btn1 btn-primary btn-lg" onClick={test} role="button">สูตรการทำ</button>
-                        <p>{cooka} <a onClick={() => setcook('')}>close</a></p>
+                        <button className="btn1 btn-primary btn-lg" onClick={cooks} role="button">สูตรการทำ</button>
+                        {recipe()}
                     </div>
                 </div>
             </div>
