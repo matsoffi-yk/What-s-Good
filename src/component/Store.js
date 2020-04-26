@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../index'
 import Foodform from './Foodform';
+import './css/Store.css';
 
-const Store = () => {
+const Store = props => {
     const [tasks, settasks] = useState([])
+    console.log(props.searching)
 
     const retriveData = () => {
         firestore.collection('food').onSnapshot((snapshot) => {
@@ -19,22 +21,26 @@ const Store = () => {
     useEffect(() => {
         retriveData()
     }, [])
-    return (
-        <div>
-            {
-                tasks.map((item, index) => {
-                    return (
-                        <Foodform 
-                            foods ={item}
-                            key = {index}
-                        />
-                    )
-                })
-            }
+    if (props.searching === '') {
+        return null;
+    }
+    else {
+        return (
+            <div className='store'>
+                {
+                    tasks.map((item, index) => {
+                        return (
+                            <Foodform
+                                foods={item}
+                                key={index}
+                            />
+                        )
+                    })
+                }
+            </div>
+        );
+    }
 
-        </div>
-
-    );
 }
 
 export default Store;

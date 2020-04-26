@@ -34,3 +34,7 @@ button[type=search] {
     padding: 0 0 5px;
     width: 50px;
 }
+
+body {
+    background-image: url(/src/img/back.jpg);
+}

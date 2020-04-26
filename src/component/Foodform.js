@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { firestore } from '../index'
+import React, { useState } from 'react';
 import './css/Foodform.css';
 
 const Foodform = props => {
-    const dispatch = useDispatch()
-    const foods = useSelector(state => state.foods)
     const [taskrecipe, settaskrecipe] = useState('')
     const [taskcook, settaskcook] = useState('')
-    const [click, seclick] = useState('')
     const { name, imgUrl, detail, recipes, cook } = props.foods;
 
-    const task = () => {
-        settaskrecipe('')
-        settaskcook('')
+    const clickrecipes = () => {
+        if (taskrecipe.length && taskrecipe)
+            settaskrecipe('')
+        else
+            settaskrecipe(recipes)
     }
-    const cooks = () => {
 
+    const clickcooks = () => {
+        if (taskcook.length && taskcook)
+            settaskcook('')
+        else
+            settaskcook(cook)
     }
 
     const recipe = () => {
         return (
             <div>
                 <p>{taskrecipe}</p>
-                <button className="btn1 btn-primary btn-lg" onClick={() => settaskcook(cook)} role="button">ขั้นตอน</button>
+                <button className="btn1 btn-primary btn-lg" onClick={clickcooks} role="button">ขั้นตอน</button>
                 <br />
                 <p>{taskcook}</p>
-                <button onClick={task}>close</button>
             </div>
         )
     }
@@ -38,7 +38,7 @@ const Foodform = props => {
                     <div className="media-body">
                         <h5 className="mt-0">{name}</h5>
                         <p>{detail}</p>
-                        <button className="btn1 btn-primary btn-lg" onClick={() => settaskrecipe(recipes)} role="button">ส่วนผสม</button>
+                        <button className="btn1 btn-primary btn-lg" onClick={clickrecipes} role="button">ส่วนผสม</button>
                         {recipe()}
                     </div>
                 </div>
