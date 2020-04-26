@@ -5,7 +5,7 @@ import './css/Store.css';
 
 const Store = props => {
     const [tasks, settasks] = useState([])
-    console.log(props.searching)
+    // console.log(props.searching)
 
     const retriveData = () => {
         firestore.collection('food').onSnapshot((snapshot) => {
@@ -21,26 +21,23 @@ const Store = props => {
     useEffect(() => {
         retriveData()
     }, [])
-    if (props.searching === '') {
-        return null;
-    }
-    else {
-        return (
-            <div className='store'>
-                {
-                    tasks.map((item, index) => {
-                        return (
-                            <Foodform
-                                foods={item}
-                                key={index}
-                            />
-                        )
-                    })
-                }
-            </div>
-        );
-    }
+    
+    return (
+        <div className='store'>
+            {
+                tasks.map((item, index) => {
+                    return (
+                        <Foodform 
+                            foods ={item}
+                            key = {index}
+                        />
+                    )
+                })
+            }
 
+        </div>
+
+    );
 }
 
 export default Store;
