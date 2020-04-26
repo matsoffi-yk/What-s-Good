@@ -6,18 +6,27 @@ import './css/Foodform.css';
 const Foodform = props => {
     const dispatch = useDispatch()
     const foods = useSelector(state => state.foods)
-    const [cooka, setcook] = useState('')
+    const [taskrecipe, settaskrecipe] = useState('')
+    const [taskcook, settaskcook] = useState('')
+    const [click, seclick] = useState('')
     const { name, imgUrl, detail, recipes, cook } = props.foods;
 
+    const task = () => {
+        settaskrecipe('')
+        settaskcook('')
+    }
     const cooks = () => {
-        setcook(cook)
+
     }
 
     const recipe = () => {
         return (
             <div>
-                <p>{cooka}</p>
-                <a onClick={() => setcook('')}>close</a>
+                <p>{taskrecipe}</p>
+                <button className="btn1 btn-primary btn-lg" onClick={() => settaskcook(cook)} role="button">ขั้นตอน</button>
+                <br />
+                <p>{taskcook}</p>
+                <button onClick={task}>close</button>
             </div>
         )
     }
@@ -29,7 +38,7 @@ const Foodform = props => {
                     <div className="media-body">
                         <h5 className="mt-0">{name}</h5>
                         <p>{detail}</p>
-                        <button className="btn1 btn-primary btn-lg" onClick={cooks} role="button">สูตรการทำ</button>
+                        <button className="btn1 btn-primary btn-lg" onClick={() => settaskrecipe(recipes)} role="button">ส่วนผสม</button>
                         {recipe()}
                     </div>
                 </div>

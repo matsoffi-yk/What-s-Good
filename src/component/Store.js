@@ -19,7 +19,6 @@ const Store = () => {
     useEffect(() => {
         retriveData()
     }, [])
-    console.log('2222',tasks)
     return (
         <div>
             {
