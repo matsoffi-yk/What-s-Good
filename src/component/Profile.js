@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase'
-import { firestore } from '../index'
+import { firestore, storage } from '../index'
 import './css/Profile.css'
 import { useDispatch, useSelector } from 'react-redux';
 
-const Admin = () => {
+const Profile = () => {
     const [user, setUser] = useState({})
+
     const dispatch = useDispatch()
     const foods = useSelector(state => state.foods)
     const form = useSelector(state => state.form)
@@ -71,13 +72,12 @@ const Admin = () => {
 
                 <div className="form-group">
                     <label for="exampleInputFile" className="bmd-label-floating">รูปภาพอาหาร</label>
-                    <input type="file" className="form-control-file" id="exampleInputFile" onChange={e => dispatch({ type: 'IMGURL', imgUrl: e.target.value })} />
-                    <small className="text-muted">ขนาดที่เหมาะสมคือ 80x80</small>
+                    <input type="text" className="form-control-file" id="exampleInputFile" onChange={e => dispatch({ type: 'IMGURL', imgUrl: e.target.value })} />
+                    <small className="text-muted">อัพโหลดรูปและนำ URL มาใส่ในนี่(ขนาดที่เหมาะสมคือ 80x80) <a href='https://www.picz.in.th/'>กดที่นี่เพื่ออัพโหลดรูป</a></small>
                 </div>
                 <div>
                     <button type="submit" className="btn2 btn-primary btn-raised" onClick={addFood}>Submit</button>
                 </div>
-
             </div>
 
         );
@@ -92,4 +92,4 @@ const Admin = () => {
 
 }
 
-export default Admin;
+export default Profile;
