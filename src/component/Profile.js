@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase'
-import { firestore, storage } from '../index'
+import { firestore } from '../index'
 import './css/Profile.css'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux'; 
 
 const Profile = () => {
     const [user, setUser] = useState({})

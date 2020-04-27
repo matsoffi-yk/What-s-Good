@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { firestore } from '../index'
 import Store from './Store';
 
-const Search = () => {
+const Search = props => {
 
     const [names, setnames] = useState([])
     const [searching, setsearching] = useState('')
-
     const retriveData = () => {
         firestore.collection('food').onSnapshot((snapshot) => {
             let foods = snapshot.docs.map(d => {
@@ -22,17 +21,8 @@ const Search = () => {
     }, [])
 
     const search = () => {
-        console.log(searching)
-        // names.map((item, index) => {
-        //     if (searching == item.name) {
-        //         console.log(item.name)
-        //            (<Store 
-        //                 foodsearch ={item}
-        //                 key = {index}
-        //             />)
-        //     }
-        // }
-        // )
+        console.log(searching,"Sea")
+        props.search({ searching })
     }
 
     return (

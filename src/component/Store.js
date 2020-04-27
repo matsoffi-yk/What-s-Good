@@ -20,25 +20,51 @@ const Store = props => {
     useEffect(() => {
         retriveData()
     }, [])
-
-    return (
-        <div>
-            <div className='store'>
-                {
-                    tasks.map((item, index) => {
-                        return (
-                            <Foodform
-                                foods={item}
-                                key={index}
-                            />
-                        )
-                    })
-                }
+    const a = tasks.filter((name) => {
+        return props.search == name.name
+    })
+    console.log(props.search, "store")
+    if (a != '') {
+        console.log(a,'find')
+        return (
+            <div>
+                <div className='store'>
+                    {
+                        a.map((item, index) => {
+                            return (
+                                <Foodform
+                                    foods={item}
+                                    key={index}
+                                />
+                            )
+                        })
+                    }
+                </div>
             </div>
-        </div>
 
 
-    );
+        );
+    } else {
+        return (
+            <div>
+                <div className='store'>
+                    {
+                        tasks.map((item, index) => {
+                            return (
+                                <Foodform
+                                    foods={item}
+                                    key={index}
+                                />
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+
+        );
+    }
 }
+
 
 export default Store;

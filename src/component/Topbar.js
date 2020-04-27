@@ -7,10 +7,9 @@ import Store from './Store';
 import Search from './Search'
 import firebase from 'firebase';
 
-const Topbar = () => {
-
+const Topbar = props => {
     const [user, setUser] = useState(false)
-
+    const [search, setsearch] = useState('')
     const authListener = () => {
         firebase.auth().onAuthStateChanged(user => {
             if (user)
@@ -20,11 +19,15 @@ const Topbar = () => {
         })
     }
 
+    const search1 = (data) => {
+        console.log(data.searching, "Top")
+        setsearch(data.searching)
+    }
+
     useEffect(() => {
         authListener();
     }, [])
 
-    console.log(user)
     return (
         <Router>
             <div className="body">
@@ -34,7 +37,8 @@ const Topbar = () => {
                     </Link>
                 </div>
 
-                <Search />
+                <Search search={search1} />
+
 
                 <div className="menu">
                     <Link to="/Profile">
@@ -53,7 +57,7 @@ const Topbar = () => {
             </div>
             <Switch>
                 <Route path="/Store">
-                    <Store />
+                    <Store search={search} />
                 </Route>
                 <Route path="/Profile">
                     <Profile />
