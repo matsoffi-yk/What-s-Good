@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
-import { FoodReducer } from './Food/reducer';
+import { FoodReducer, FoodForm } from './Food/reducer';
 
 export const reducers = combineReducers({
-    foods: FoodReducer
+    foods: FoodReducer,
+    form: FoodForm
 })

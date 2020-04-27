@@ -1,8 +1,14 @@
 .pleace {
     text-align: center;
     padding: 20px;
+    
 }
 
 .form {
     padding: 20px;
+    
+}
+
+.btn2 {
+    background-color: #4CAF50;
 }

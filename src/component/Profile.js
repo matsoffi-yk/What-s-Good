@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import firebase from 'firebase'
+import { firestore } from '../index'
 import './css/Profile.css'
+import { useDispatch, useSelector } from 'react-redux';
 
 const Admin = () => {
     const [user, setUser] = useState({})
+    const dispatch = useDispatch()
+    const foods = useSelector(state => state.foods)
+    const form = useSelector(state => state.form)
+
     const authListener = () => {
         firebase.auth().onAuthStateChanged(user => {
             if (user)
@@ -13,41 +19,63 @@ const Admin = () => {
         })
     }
 
+    const retriveData = () => {
+        firestore.collection('food').onSnapshot((snapshot) => {
+            let newFood = snapshot.docs.map(d => {
+                const { id, name, imgUrl, detail, recipes, cook } = d.data()
+                return { id, name, imgUrl, detail, recipes, cook }
+            })
+            dispatch({ type: 'ADD_FOOD', foods: newFood })
+        })
+    }
+    console.log(foods)
+    const addFood = () => {
+        let id = foods.length === 0 ? 1 : foods[foods.length - 1].id + 1
+        firestore.collection("food").doc(id + '').set({
+            id,
+            name: form.name,
+            detail: form.detail,
+            imgUrl: form.imgUrl,
+            recipes: form.recipes,
+            cook: form.cook
+        })
+    }
+
     useEffect(() => {
         authListener()
+        retriveData()
     }, [])
 
-    console.log(user)
     if (user) {
         return (
             <div className="form">
-                <div class="form-group">
+                <div className="form-group">
                     <label className="bmd-label-floating">ชื่ออาหาร : Food name</label>
-                    <input type="text" className="form-control" />
+                    <input type="text" className="form-control" onChange={e => dispatch({ type: 'NAME', name: e.target.value })} />
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                     <label className="bmd-label-floating">รายละเอียด : Detail</label>
-                    <input type="text" className="form-control" />
+                    <input type="text" className="form-control" onChange={e => dispatch({ type: 'DETAIL', detail: e.target.value })} />
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                     <label for="exampleTextarea" className="bmd-label-floating">ส่วนผสม : Recipes</label>
-                    <textarea className="form-control" id="exampleTextarea" rows="3"></textarea>
+                    <textarea className="form-control" id="exampleTextarea" rows="3" onChange={e => dispatch({ type: 'RECIPES', recipes: e.target.value })}></textarea>
                 </div>
 
-                <div class="form-group">
+                <div className="form-group">
                     <label for="exampleTextarea" className="bmd-label-floating">ขั้นตอนการทำอาหาร : Cooking steps</label>
-                    <textarea className="form-control" id="exampleTextarea" rows="3"></textarea>
+                    <textarea className="form-control" id="exampleTextarea" rows="3" onChange={e => dispatch({ type: 'COOK', cook: e.target.value })}></textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="exampleInputFile" class="bmd-label-floating">รูปภาพอาหาร</label>
-                    <input type="file" class="form-control-file" id="exampleInputFile" />
-                    <small class="text-muted">ขนาดที่เหมาะสมคือ 80x80</small>
+                <div className="form-group">
+                    <label for="exampleInputFile" className="bmd-label-floating">รูปภาพอาหาร</label>
+                    <input type="file" className="form-control-file" id="exampleInputFile" onChange={e => dispatch({ type: 'IMGURL', imgUrl: e.target.value })} />
+                    <small className="text-muted">ขนาดที่เหมาะสมคือ 80x80</small>
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-primary btn-raised">Submit</button>
+                    <button type="submit" className="btn2 btn-primary btn-raised" onClick={addFood}>Submit</button>
                 </div>
 
             </div>

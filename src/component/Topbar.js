@@ -42,7 +42,7 @@ const Topbar = () => {
                     </Link>
                     <Link to="/Auth">
                         {user ? (
-                            <div>
+                            <div className='login'>
                                 <h3>{firebase.auth().currentUser.displayName} </h3>
                             </div>
                         ) : (
