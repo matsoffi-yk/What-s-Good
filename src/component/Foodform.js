@@ -24,7 +24,7 @@ const Foodform = props => {
         return (
             <div>
                 <p>{taskrecipe}</p>
-                <button className="btn1 btn-primary btn-lg" onClick={clickcooks} role="button">ขั้นตอน</button>
+                <button className="btn1 btn-primary btn-lg" onClick={clickcooks} role="button">ขั้นตอนการทำอาหาร : Cooking steps</button>
                 <br />
                 <p>{taskcook}</p>
             </div>
@@ -38,7 +38,7 @@ const Foodform = props => {
                     <div className="media-body">
                         <h5 className="mt-0">{name}</h5>
                         <p>{detail}</p>
-                        <button className="btn1 btn-primary btn-lg" onClick={clickrecipes} role="button">ส่วนผสม</button>
+                        <button className="btn1 btn-primary btn-lg" onClick={clickrecipes} role="button">ส่วนผสม : Recipes</button>
                         {recipe()}
                     </div>
                 </div>
