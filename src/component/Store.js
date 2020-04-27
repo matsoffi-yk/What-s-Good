@@ -5,7 +5,6 @@ import './css/Store.css';
 
 const Store = props => {
     const [tasks, settasks] = useState([])
-    // console.log(props.searching)
 
     const retriveData = () => {
         firestore.collection('food').onSnapshot((snapshot) => {
@@ -21,21 +20,23 @@ const Store = props => {
     useEffect(() => {
         retriveData()
     }, [])
-    
-    return (
-        <div className='store'>
-            {
-                tasks.map((item, index) => {
-                    return (
-                        <Foodform 
-                            foods ={item}
-                            key = {index}
-                        />
-                    )
-                })
-            }
 
+    return (
+        <div>
+            <div className='store'>
+                {
+                    tasks.map((item, index) => {
+                        return (
+                            <Foodform
+                                foods={item}
+                                key={index}
+                            />
+                        )
+                    })
+                }
+            </div>
         </div>
+
 
     );
 }
