@@ -30,6 +30,7 @@ const AddFood = () => {
         })
     }
     console.log(foods)
+    
     const addFood = () => {
         let id = foods.length === 0 ? 1 : foods[foods.length - 1].id + 1
         if (form.name == '') {

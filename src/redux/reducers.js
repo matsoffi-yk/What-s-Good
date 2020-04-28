@@ -5,3 +5,4 @@ export const reducers = combineReducers({
     foods: FoodReducer,
     form: FoodForm
 })
+

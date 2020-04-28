@@ -7,7 +7,7 @@ import Store from './Store';
 import Search from './Search'
 import firebase from 'firebase';
 
-const Topbar = props => {
+const Topbar = () => {
     const [user, setUser] = useState(false)
     const [search, setsearch] = useState('')
     const authListener = () => {

@@ -1,23 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { firestore } from '../index'
+import React, { useState } from 'react';
 
 const Search = props => {
 
-    const [names, setnames] = useState([])
     const [searching, setsearching] = useState('')
-    const retriveData = () => {
-        firestore.collection('food').onSnapshot((snapshot) => {
-            let foods = snapshot.docs.map(d => {
-                const { name, imgUrl, detail, recipes, cook } = d.data()
-                return { name, imgUrl, detail, recipes, cook }
-            })
-            setnames(foods)
-        })
-    }
-
-    useEffect(() => {
-        retriveData()
-    }, [])
 
     const search = () => {
         console.log(searching,"Sea")
@@ -32,7 +17,6 @@ const Search = props => {
                     <path d="M10.442 10.442a1 1 0 011.415 0l3.85 3.85a1 1 0 01-1.414 1.415l-3.85-3.85a1 1 0 010-1.415z" />
                     <path d="M6.5 12a5.5 5.5 0 100-11 5.5 5.5 0 000 11zM13 6.5a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z" />
                 </svg></button>
-                {/* <Store searching={searching} /> */}
             </div>
         </div>
 
