@@ -10,8 +10,8 @@ const Store = props => {
         firestore.collection('food').onSnapshot((snapshot) => {
             console.log(snapshot.docs)
             let foods = snapshot.docs.map(d => {
-                const { name, imgUrl, detail, recipes, cook } = d.data()
-                return { name, imgUrl, detail, recipes, cook }
+                const { id, name, imgUrl, detail, recipes, cook } = d.data()
+                return { id, name, imgUrl, detail, recipes, cook }
             })
             settasks(foods)
         })
@@ -23,6 +23,7 @@ const Store = props => {
     const a = tasks.filter((name) => {
         return props.search == name.name
     })
+
     console.log(props.search, "store")
     if (a != '') {
         console.log(a,'find')

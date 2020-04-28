@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import firebase from 'firebase'
 import { firestore } from '../index'
 import './css/Profile.css'
-import { useDispatch, useSelector } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux';
 
-const Profile = () => {
+const AddFood = () => {
     const [user, setUser] = useState({})
 
     const dispatch = useDispatch()
@@ -32,14 +32,19 @@ const Profile = () => {
     console.log(foods)
     const addFood = () => {
         let id = foods.length === 0 ? 1 : foods[foods.length - 1].id + 1
-        firestore.collection("food").doc(id + '').set({
-            id,
-            name: form.name,
-            detail: form.detail,
-            imgUrl: form.imgUrl,
-            recipes: form.recipes,
-            cook: form.cook
-        })
+        if (form.name == '') {
+            alert("Please enter the food");
+        } else {
+            firestore.collection("food").doc(id + '').set({
+                id,
+                name: form.name,
+                detail: form.detail,
+                imgUrl: form.imgUrl,
+                recipes: form.recipes,
+                cook: form.cook
+            })
+        }
+
     }
 
     useEffect(() => {
@@ -92,4 +97,4 @@ const Profile = () => {
 
 }
 
-export default Profile;
+export default AddFood;

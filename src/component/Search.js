@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { firestore } from '../index'
-import Store from './Store';
 
 const Search = props => {
 

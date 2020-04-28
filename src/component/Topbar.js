@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./css/Topbar.css";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import Profile from './Profile';
+import AddFood from './AddFood';
 import Auth from './Auth';
 import Store from './Store';
 import Search from './Search'
@@ -33,7 +33,11 @@ const Topbar = props => {
             <div className="body">
                 <div>
                     <Link to="/Store">
-                        <h3>What's good</h3>
+                        <div className='logo'>
+                            <img src="Logo.jpg" className="mr-3" className="img" alt="..." />
+                            <h3>What's good</h3>
+                        </div>
+
                     </Link>
                 </div>
 
@@ -41,8 +45,8 @@ const Topbar = props => {
 
 
                 <div className="menu">
-                    <Link to="/Profile">
-                        <h3>Profile</h3>
+                    <Link to="/AddFood">
+                        <h3>Add Food</h3>
                     </Link>
                     <Link to="/Auth">
                         {user ? (
@@ -59,8 +63,8 @@ const Topbar = props => {
                 <Route path="/Store">
                     <Store search={search} />
                 </Route>
-                <Route path="/Profile">
-                    <Profile />
+                <Route path="/AddFood">
+                    <AddFood />
                 </Route>
                 <Route path="/">
                     <Auth />

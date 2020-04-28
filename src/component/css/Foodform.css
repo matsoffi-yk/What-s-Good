@@ -22,3 +22,7 @@
     font-size: 18px;
     
 }
+
+.delete {
+    background-color: rgb(255, 0, 0);
+}
