@@ -29,7 +29,6 @@ input[type=text1]{
     box-sizing: border-box;
     padding: 0 0 0 10px;
   }
-  
 button[type=search] {
     border: 1px solid rgb(255, 166, 0);
     padding: 0 0 5px;
@@ -38,11 +37,9 @@ button[type=search] {
 .login {
     display: flex;
 }
-
 .logo {
     display: flex;
 }
-
 .img{
     width:45px;
     height:45px ;
